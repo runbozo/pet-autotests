@@ -12,6 +12,7 @@ pytest = "^7.1.2"
 allure-pytest = "^2.9.45"
 colorlog = "^6.6.0"
 pydantic = "^1.9.0"
+dynaconf = "^3.1.8"
 
 [tool.poetry.dev-dependencies]
 

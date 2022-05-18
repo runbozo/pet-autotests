@@ -4,6 +4,7 @@ import allure
 from src.api.client.contacts_client import ContactsClient
 from src.api.models.contacts_schemas import ContactBodyModel
 from src.utils import fake_mail
+from config import settings as cfg
 
 
 new_user_body = ContactBodyModel(
@@ -14,7 +15,7 @@ new_user_body = ContactBodyModel(
 
 @pytest.fixture(scope="class")
 def contacts_client():
-    yield ContactsClient(base_url="http://localhost:8080/")
+    yield ContactsClient(base_url=cfg.base_url)
 
 
 @pytest.fixture(scope="function")
