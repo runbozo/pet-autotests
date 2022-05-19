@@ -13,10 +13,9 @@ def fake_mail():
 
 class CommonSteps:
 
-    STATUS_200 = allure.step("Проверяем код ответа сервера status_code == 200")
-    STATUS_400 = allure.step("Проверяем код ответа сервера status_code == 400")
-    STATUS_404 = allure.step("Проверяем код ответа сервера status_code == 404")
-
+    STATUS_200 = allure.step("Проверить код ответа сервера status_code == 200")
+    STATUS_400 = allure.step("Проверить код ответа сервера status_code == 400")
+    STATUS_404 = allure.step("Проверить код ответа сервера status_code == 404")
 
     def custom_status(self, code):
-        return allure.step(f"Проверяем код ответа сервера == {self.code}")
+        return allure.step(f"Проверить код ответа сервера == {code}")

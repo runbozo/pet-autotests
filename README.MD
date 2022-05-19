@@ -54,21 +54,21 @@ export ENV_FOR_DYNACONF=dev
 По умолчанию установленное окружение прописано в файле _/config.py_.
 Конфиги находятся в файле _dev_settings.toml_ корня директории.
 
-# Запуск
+# Запуск API тестов
 
 ```sh
-poetry run pytest tests --alluredir=results
+poetry run pytest tests/api --alluredir=results
 ```
 или
 ```sh
 poetry shell
-pytest tests --alluredir=results
+pytest tests/api --alluredir=results
 ```
 
-# Запуск ui тестов на локальном selenoid
-1. Создаем в _env файл конфига для локального запуска, например local.yaml
-2. Выполняем команды
+# Запуск UI тестов
+1. Скачиваем chromedriver необходимой версии (если положить его в корень данного фреймворка и назвать 'chromedriver' - подцепится автоматически)
+2. Помимо пути к chromedriver по умолчанию,
+можно указать свой путь через аргумент при запуске _--chromedriver_
 ```
-poetry run invoke selenoid.up
-poetry run pytest --env=<local.yaml> tests/web
+poetry run pytest tests/api --chromedriver={YOUR_PATH} --alluredir=results
 ```
