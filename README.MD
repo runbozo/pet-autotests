@@ -67,6 +67,9 @@ pytest tests/api --alluredir=results
 
 # Запуск UI тестов
 1. Скачиваем chromedriver необходимой версии (если положить его в корень данного фреймворка и назвать 'chromedriver' - подцепится автоматически)
+```sh
+https://chromedriver.chromium.org/downloads
+```
 2. Помимо пути к chromedriver по умолчанию,
 можно указать свой путь через аргумент при запуске _--chromedriver_
 ```
