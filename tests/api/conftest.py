@@ -19,26 +19,22 @@ def contacts_client():
 
 
 @pytest.fixture(scope="function")
-def fake_contact(request, contacts_client):
-    response = contacts_client.add_contact(new_user_body.dict(exclude_none=True))
+def fake_contact(contacts_client):
+
+    with allure.step("Создать запись контакта для тестов"):
+        response = contacts_client.add_contact(new_user_body.dict(exclude_none=True))
     assert response.status_code == 200
 
-    id = response.json()['id']
+    contact_id = response.json()['id']
 
-    def cleanup():
-        response = contacts_client.delete_contact(id)
-        assert response.status_code in (200, 404)
-    request.addfinalizer(cleanup)
+    yield contact_id
 
-    with allure.step(f"Создан контакт с id == {id}"):
-        return id
+    response = contacts_client.delete_contact(contact_id)
+    assert response.status_code in (200, 404)
 
 
 @pytest.fixture(scope="class", autouse=True)
 def cleanup_test_contacts(contacts_client):
-    # TODO: Нужно просить разработчика добавить возможность получения записей не только по id,
-    #  а по другим полям типа имени/фамилии для производительности
-
     yield
 
     with allure.step("Удаляем все записи из базы с first_name == 'test'"):

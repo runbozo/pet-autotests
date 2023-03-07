@@ -6,7 +6,7 @@ authors = ["Alexander Belozerov <asbelozerov@sbercloud.ru>"]
 license = "FREE"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 requests = "^2.27.1"
 pytest = "^7.1.2"
 allure-pytest = "^2.9.45"
