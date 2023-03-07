@@ -13,27 +13,23 @@
    (подробно см. readme в приложении)
 
 # Установка зависимостей
-Poetry хранит информацию о необходимых пакетах в файле pyproject.toml
+Для управления зависимостями используется менеджер пакетов poetry. Устанавливаем poetry:
+```sh
+pip install poetry
+```
+Poetry хранит информацию о необходимых для работы тестового фреймворка пакетах в файле pyproject.toml
 ```sh
 cd pet-autotests # Переходим в директорию pet-autotests, если вдруг еще не находимся в ней
-poetry install
+poetry install # Устанавливаем необходимые зависимости
 ```
 
 # Отчётность
 
-1. Ставим java `openjdk-8-jre`
-
-1. Качаем allure https://github.com/allure-framework/allure2/releases/
-    ```sh
-    wget https://repo1.maven.org/maven2/io/qameta/allure/allure-commandline/2.13.6/allure-commandline-2.13.6.zip
-    ```
-
-1. Распаковываем:
-    ```sh
-    unzip allure-commandline-2.13.6.zip
-    ```
-
-1. Смотрим отчёт:
+1. Устанавливаем allure
+```sh
+brew install allure # команда для macOS    
+```
+2. Просмотр отчёта (генерируется после тестового прогона):
     ```sh
     /path/to/allure-2.13.6/bin/allure serve allure_dir
 
@@ -57,21 +53,10 @@ export ENV_FOR_DYNACONF=dev
 # Запуск API тестов
 
 ```sh
-poetry run pytest tests/api --alluredir=results
+poetry run pytest tests/api
 ```
 или
 ```sh
 poetry shell
-pytest tests/api --alluredir=results
-```
-
-# Запуск UI тестов
-1. Скачиваем chromedriver необходимой версии (если положить его в корень данного фреймворка и назвать 'chromedriver' - подцепится автоматически)
-```sh
-https://chromedriver.chromium.org/downloads
-```
-2. Помимо пути к chromedriver по умолчанию,
-можно указать свой путь через аргумент при запуске _--chromedriver_
-```
-poetry run pytest tests/api --chromedriver={YOUR_PATH} --alluredir=results
+pytest tests/api
 ```
